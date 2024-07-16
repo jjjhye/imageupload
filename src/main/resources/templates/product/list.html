@@ -27,7 +27,8 @@
         <tr th:each="data:${list}">
 <!-- 이미지가 저장된 위치 c:/product/image, image=c:/product/등록/image누락-->
 <!-- 타임리프에서 문자열 주소, 변수가 뒤섞여져 잇는 경우는 | 묶는다-->
-            <td><img th:src="|/images/image/@{${data.img}}|" width="150" height="100"></td>
+<!-- width 폭값, height 높이값, 둘 중에 하나만 사용하면 자동으로 나머지 적용-->
+            <td><img th:src="|/images/image/@{${data.img}}|" width="100" ></td>
             <td><a th:href="@{/product/detail(pid=${data.pid})}" th:text="${data.product}">노트북</a></td>
             <td>
                 <span th:if="${data.state==1}">신상품</span><!--상태값이 1이면 출력-->

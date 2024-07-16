@@ -8,6 +8,56 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-
+<div class="container">
+    <h2>상품수정</h2>
+    <!-- 파일전송시 method 반드시 post, enctype 선언-->
+    <form th:action="@{/product/update}" method="post" th:object="${data}" enctype="multipart/form-data">
+        <input type="hidden" name="pid" th:field="*{pid}">
+        <div class="mb-3 mt-3">
+            <label>상품명:</label>
+            <input type="text" class="form-control" name="product"
+            th:field="*{product}">
+        </div>
+        <div class="mb-3">
+            <label>상품설명:</label>
+            <textarea class="form-control" rows="5" name="detail"
+            th:field="*{detail}"></textarea>
+        </div>
+        <div class="mb-3">
+            <label>상품이미지:</label>
+            <img th:src="|/images/image/@{${data.img}}|" width="150"><!--이전 이미지 출력-->
+            <input type="file" class="form-control" name="imgFile"><!--type으로 파일등록-->
+        </div>
+        <div class="mb-3">
+            <label>가격:</label>
+            <input type="number" class="form-control" name="price"
+                   th:field="*{price}">
+        </div>
+        <div class="mb-3">
+            <label>재고량:</label>
+            <input type="number" class="form-control" name="quantity"
+                   th:field="*{quantity}">
+        </div>
+        <div class="mb-3">
+            <label>상태:</label>
+            <select class="form-select" name="state" th:field="*{state}">
+                <option value="1">신상품</option><!--화면에 보이는 내용, value=내부에 처리되는 값-->
+                <option value="2">판매상품</option>
+                <option value="3">재고상품</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label>세일:</label>
+            <select class="form-select" name="sale" th:field="*{sale}"><!--DTO의 변수명으로-->
+                <option value="1">정상판매가</option><!--화면에 보이는 내용, value=내부에 처리되는 값-->
+                <option value="2">세일판매가</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">수정</button>
+    </form>
+</div>
+</body>
+</html>
+</html>
 </body>
 </html>
